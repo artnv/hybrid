@@ -22,13 +22,13 @@ AppHybrid.moduleManagers.layoutsManager = (function() {
         
         /* --------------------- Dependency injection --------------------- */
         
-        LAYOUTS.site.addDependencies(DI);
+        LAYOUTS.demo.addDependencies(DI);
         LAYOUTS.welcome.addDependencies(DI);
 
         
         /* --------------------- Initialization modules --------------------- */
         
-        LAYOUTS.site.initModule();
+        LAYOUTS.demo.initModule();
         LAYOUTS.welcome.initModule();
 
 

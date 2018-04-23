@@ -12,43 +12,8 @@ AppHybrid.layouts.welcome = (function() {
     
     PUBLIC.template = {
         tplName         : 'welcome',
-        $tpl            : $('#hybrid-layout-welcome'),
-        $nav            : $('#hybrid-layout-welcome-nav-1')
+        $tpl            : $('#hybrid-layout-welcome')
     };
-    
-    PUBLIC.showNavBar = function(activeKey) {
-
-        var
-            items;
-        // --
-        
-        items = [{
-                text    : 'Документация',
-                link    : '#/site/doc',
-                key     : 'siteDoc'
-            },{
-                text    : 'Архитектура',
-                link    : '#/site/about',
-                key     : 'siteAbout'
-            },{
-                text            : 'GitHub',
-                link            : 'https://github.com/artnv/hybrid',
-                targetBlank     : true
-        }];
-        
-        if(activeKey != 'siteIndex') {
-            items.unshift({
-                text    : 'Главная страница',
-                link    : '#/site/index',
-                key     : 'siteIndex'
-            });
-        }
-
-        PUBLIC.template.$nav.html(
-            DI.app.widgets.nav.make(items, activeKey)
-        );
-        
-    }
     
     PUBLIC.addDependencies = function(obj) {
         DI = obj;
@@ -58,12 +23,15 @@ AppHybrid.layouts.welcome = (function() {
         
         /* --------------------- Register layout --------------------- */
         
+        PUBLIC.template.on = function() {
+            PUBLIC.template.$tpl.fadeIn();
+        }
+        
         DI.app.components.templateSwitcher.register(PUBLIC.template);
 
         
         /* --------------------- Listeners --------------------- */
         
-        DI.app.eventManager.on('Router@Action', PUBLIC.showNavBar);
     };
 
     return PUBLIC;

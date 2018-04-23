@@ -22,13 +22,13 @@ AppHybrid.moduleManagers.controllersManager = (function() {
        
        /* --------------------- Dependency injection --------------------- */
         
-        CONTROLLERS.siteController.addDependencies(DI);
+        CONTROLLERS.demoController.addDependencies(DI);
         CONTROLLERS.welcomeController.addDependencies(DI);
   
         
         /* --------------------- Initialization modules --------------------- */
         
-        CONTROLLERS.siteController.initModule();
+        CONTROLLERS.demoController.initModule();
         CONTROLLERS.welcomeController.initModule();
 
     };

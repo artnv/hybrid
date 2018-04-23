@@ -1,5 +1,4 @@
-// Страница с ошибкой 404
-AppHybrid.views.sitePage404 = (function() {
+AppHybrid.views.demoIndex = (function() {
     
     var
         PUBLIC      = {},
@@ -11,16 +10,16 @@ AppHybrid.views.sitePage404 = (function() {
     
     
     PUBLIC.template = {
-        layoutName      : 'site',
-        tplName         : 'sitePage404',
-        $tpl            : $('#hybrid-tpl-site-page404')
+        layoutName      : 'demo',
+        tplName         : 'demoIndex',
+        $tpl            : $('#hybrid-tpl-demo-index')
     };
 
     PUBLIC.show = function() {
 
         DI.app.widgets.title.set(
-            DI.app.widgets.title.getDefault() +' / '+ 'Ошибка 404. Страница не найдена'
-        );
+            DI.app.widgets.title.getDefault() +' / '+ 'Demo'
+        );        
         
         DI.app.components.templateSwitcher.switch(PUBLIC.template);
     };
@@ -30,27 +29,14 @@ AppHybrid.views.sitePage404 = (function() {
     };
     
     PUBLIC.initModule = function() {
-
-        $("#go_to_index").click(function() {
-            DI.app.router.redirectTo('#/site/index');
-        });
-        
-        
+       
         /* --------------------- Register template --------------------- */
-        
-        PUBLIC.template.on   = function() {
-            alert('ON - switch template');
-        } 
-        
-        PUBLIC.template.after   = function() {
-            alert('AFTER - switch template');
-        }
-    
+       
         DI.app.components.templateSwitcher.register(PUBLIC.template);
 
         
         /* --------------------- Listeners --------------------- */
-
+        //app.eventManager.on('Models/productPage/getProductPage', PUBLIC.showProductPage);
     };
 
     return PUBLIC;

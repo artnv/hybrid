@@ -1,5 +1,4 @@
-// Главная страница
-AppHybrid.views.siteIndex = (function() {
+AppHybrid.views.demoAbout = (function() {
     
     var
         PUBLIC      = {},
@@ -11,16 +10,32 @@ AppHybrid.views.siteIndex = (function() {
     
     
     PUBLIC.template = {
-        layoutName      : 'site',
-        tplName         : 'siteIndex',
-        $tpl            : $('#hybrid-tpl-site-index')
+        layoutName      : 'demo',
+        tplName         : 'demoAbout',
+        $tpl            : $('#hybrid-tpl-demo-about')
     };
 
     PUBLIC.show = function() {
 
         DI.app.widgets.title.set(
-            DI.app.widgets.title.getDefault() +' / '+ 'Главная страница'
+            DI.app.widgets.title.getDefault() +' / '+ 'О приложении'
         );        
+        
+        var x = DI.app.widgets.breadcrumb.make([
+            {
+                text    : 'Главная страница',
+                link    : '#/welcome'
+            },            
+            {
+                text    : 'Demo'
+            },
+            {
+                active  : true,
+                text    : 'О приложении'
+            }
+        ]);
+        
+        PUBLIC.template.$tpl.html(x);
         
         DI.app.components.templateSwitcher.switch(PUBLIC.template);
     };
@@ -37,7 +52,7 @@ AppHybrid.views.siteIndex = (function() {
 
         
         /* --------------------- Listeners --------------------- */
-        //app.eventManager.on('Models/productPage/getProductPage', PUBLIC.showProductPage);
+        
     };
 
     return PUBLIC;

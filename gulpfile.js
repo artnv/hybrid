@@ -58,7 +58,7 @@ var scripts = [
 
 var css = [
     './node_modules/bootstrap/dist/css/bootstrap.css',
-    './node_modules/pace-js/themes/red/pace-theme-minimal.css',
+    './node_modules/pace-js/themes/blue/pace-theme-minimal.css',
     './src/css/**/*.css'
 ];
 

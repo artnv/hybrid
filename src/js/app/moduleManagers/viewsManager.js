@@ -22,10 +22,10 @@ AppHybrid.moduleManagers.viewsManager = (function() {
         
         /* --------------------- Dependency injection --------------------- */
         
-        /* Site */
-        VIEWS.siteIndex.addDependencies(DI);
-        VIEWS.siteAbout.addDependencies(DI);
-        VIEWS.sitePage404.addDependencies(DI);
+        /* Demo */
+        VIEWS.demoIndex.addDependencies(DI);
+        VIEWS.demoAbout.addDependencies(DI);
+        VIEWS.demoPage404.addDependencies(DI);
         
         /* Welcome */
         VIEWS.welcomeIndex.addDependencies(DI);
@@ -33,10 +33,10 @@ AppHybrid.moduleManagers.viewsManager = (function() {
         
         /* --------------------- Initialization modules --------------------- */
 
-        /* Site */
-        VIEWS.siteIndex.initModule();
-        VIEWS.siteAbout.initModule();
-        VIEWS.sitePage404.initModule();
+        /* Demo */
+        VIEWS.demoIndex.initModule();
+        VIEWS.demoAbout.initModule();
+        VIEWS.demoPage404.initModule();
 
         /* Welcome */
         VIEWS.welcomeIndex.initModule();

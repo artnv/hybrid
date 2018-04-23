@@ -2,7 +2,7 @@ AppHybrid.configs.default = (function() {
     
     var
         PUBLIC = {
-            param_1    : 123
+            //param_1    : 123
         };
         
     // End var

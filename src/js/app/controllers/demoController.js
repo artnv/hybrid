@@ -1,5 +1,4 @@
-// Контроллер по умолчанию
-AppHybrid.controllers.siteController = (function() {
+AppHybrid.controllers.demoController = (function() {
     
     var
         PUBLIC  = {},
@@ -13,20 +12,19 @@ AppHybrid.controllers.siteController = (function() {
     // End vars
 
     
-    // Главная страница
+
     ACTIONS.index = function() {
-        VIEWS.siteIndex.show();
+        VIEWS.demoIndex.show();
     };
     
-    // О приложении
     ACTIONS.about = function() {
-        //MODELS.siteAbout.getContent();
-        VIEWS.siteAbout.show();
+        //MODELS.demoAbout.getContent();
+        VIEWS.demoAbout.show();
     };
     
     // Страница с ошибкой 404
     ACTIONS.pageNotFound = function() {
-        VIEWS.sitePage404.show();
+        VIEWS.demoPage404.show();
     };
     
     PUBLIC.addDependencies = function(obj) {
@@ -43,13 +41,13 @@ AppHybrid.controllers.siteController = (function() {
         /* --------------------- Listeners --------------------- */
         
         // Главная страница
-        EVENT_MANAGER.on('Router/site/index', ACTIONS.index);
+        EVENT_MANAGER.on('Router/demo/index', ACTIONS.index);
 
         // О приложении
-        EVENT_MANAGER.on('Router/site/about', ACTIONS.about);
+        EVENT_MANAGER.on('Router/demo/about', ACTIONS.about);
 
         // Страница 404
-        EVENT_MANAGER.on('Router/site/pageNotFound', ACTIONS.pageNotFound);
+        EVENT_MANAGER.on('Router/demo/pageNotFound', ACTIONS.pageNotFound);
 
     };
     

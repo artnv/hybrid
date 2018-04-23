@@ -28,11 +28,11 @@ AppHybrid.router = (function() {
         routes: {
             ''                  : 'redirectToIndex',
             'welcome'           : 'welcomeIndex',
-            'site/index'        : 'siteIndex',
-            'site/about'        : 'siteAbout',
+            'demo/index'        : 'demoIndex',
+            'demo/about'        : 'demoAbout',
             'doc/index'         : 'docIndex',
-            '404'               : 'sitePageNotFound',
-            '*random'           : 'sitePageNotFound'
+            '404'               : 'demoPageNotFound',
+            '*random'           : 'demoPageNotFound'
         },
         
         redirectToIndex     : function() {
@@ -40,26 +40,19 @@ AppHybrid.router = (function() {
         },
         
 
-        /* === site === */
+        /* === demo === */
 
-        siteIndex   : function () {
-           EVENT_MANAGER.trigger("Router/site/index");
+        demoIndex   : function () {
+           EVENT_MANAGER.trigger("Router/demo/index");
         },   
         
-        siteAbout   : function () {
-           EVENT_MANAGER.trigger("Router/site/about");
+        demoAbout   : function () {
+           EVENT_MANAGER.trigger("Router/demo/about");
         },
         
-        sitePageNotFound    : function () {
-           EVENT_MANAGER.trigger("Router/site/pageNotFound");
+        demoPageNotFound    : function () {
+           EVENT_MANAGER.trigger("Router/demo/pageNotFound");
         },
-        
-        
-        /* === doc === */
-
-        docIndex    : function () {
-           EVENT_MANAGER.trigger("Router/doc/index");
-        },        
         
         
         /* === welcome === */
@@ -73,8 +66,6 @@ AppHybrid.router = (function() {
     PUBLIC.redirectTo = function (url) {
         PUBLIC.router.navigate(url);     
     };
-    
-    /* --------------------- Dependency injection --------------------- */
     
     PUBLIC.addDependencies = function(obj) {
         DI = obj;

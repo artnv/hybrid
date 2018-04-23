@@ -34,7 +34,7 @@ AppHybrid.widgets.nav = (function() {
                 targetBlank = '';
             }
             
-            html += '<li class="nav-item"><a class="nav-link'+ addClassActive +'" '+ targetBlank +' href="'+ arr[i].link +'">'+ arr[i].text +'</li>';
+            html += '<li class="nav-item"><a class="nav-link'+ addClassActive +'" '+ targetBlank +' href="'+ arr[i].link +'">'+ arr[i].text +'</a></li>';
         }
         
         return html;
