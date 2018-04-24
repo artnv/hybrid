@@ -44,7 +44,7 @@ AppHybrid.layouts.demo = (function() {
     PUBLIC.initModule = function() {
         
         /* --------------------- Register parent template --------------------- */
-        
+
         DI.app.components.templateSwitcher.register(PUBLIC.template);
 
         

@@ -47,7 +47,7 @@ AppHybrid.views.demoAbout = (function() {
     PUBLIC.initModule = function() {
        
         /* --------------------- Register template --------------------- */
-       
+        
         DI.app.components.templateSwitcher.register(PUBLIC.template);
 
         

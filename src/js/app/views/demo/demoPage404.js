@@ -36,14 +36,6 @@ AppHybrid.views.demoPage404 = (function() {
         
         
         /* --------------------- Register template --------------------- */
-        
-        PUBLIC.template.on   = function() {
-            alert('Метод ON - switch template');
-        } 
-        
-        PUBLIC.template.after   = function() {
-            alert('AFTER - switch template');
-        }
     
         DI.app.components.templateSwitcher.register(PUBLIC.template);
 

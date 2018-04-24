@@ -1,22 +1,17 @@
 //  Компонент переключения шаблонов.
-//  Так же запускает и другие методы при переключении on/after, если есть.
+//  Так же запускает и другие методы при переключении beforeSwitch/afterSwitch/afterLeaving, если есть.
 AppHybrid.components.templateSwitcher = (function() {
     
     var
         PUBLIC      = {},
         PRIVATE     = {},
         
-        // Массив с шаблонами 
+        // Массивы со всеми шаблонами и макетами, которые были зарегистрированы
         templateStorage     = [],
-
-        // Шаблон который до этого был активным
-        lastTemplateObj,
-        
-        // Массив с макетами
         layoutStorage       = [],
         
-        // Шаблон который до этого был активным
-        lastLayoutObj,
+        // Шаблон и макет которые ранее были активными
+        lastLayoutObj, lastTemplateObj,
         
         // Dependency injection container
         DI;
@@ -42,22 +37,26 @@ AppHybrid.components.templateSwitcher = (function() {
                 // Предыдущий активный шаблон
                 if(lastTemplateObj) {
                   
-                    // Если был определен метод after у предыдущего шаблона,
-                    // то он вызывается при переключении на новый
-                    if(lastTemplateObj.after) {
-                        lastTemplateObj.after();
+                    // Запускает метод предыдущего шаблона, перед переключением на новый
+                    if(lastTemplateObj.afterLeaving) {
+                        lastTemplateObj.afterLeaving();
                     }
                     
                     // Скрываем предыдущий шаблон
                     lastTemplateObj.$tpl.hide();
                 }
                 
-                // Если определен метод при переключении у текущего шаблона, то запускаем
-                if(templateStorage[i].on) {
-                    templateStorage[i].on();
+                // Метод вызывается до отображения шаблона
+                if(templateStorage[i].beforeSwitch) {
+                    templateStorage[i].beforeSwitch();
                 }
                 
                 templateStorage[i].$tpl.show();
+                
+                // Метод вызывается после отображения шаблона
+                if(templateStorage[i].afterSwitch) {
+                    templateStorage[i].afterSwitch();
+                }
                 
                 // Предыдущий шаблон меняем на текущий, для следующего переключения
                 lastTemplateObj = templateStorage[i];
@@ -71,38 +70,48 @@ AppHybrid.components.templateSwitcher = (function() {
     };    
     
     // Переключает макет
-    PRIVATE.switchLayout = function(obj) {
+    PRIVATE.switchLayout = function(tplObj) {
 
         var
             i = layoutStorage.length;
         // --
   
-        if(!obj.layoutName) {
+        // Если макет
+        if(!tplObj.layoutName) {
             return;
         }
 
         while(i--) {
-            if(obj.layoutName == layoutStorage[i].tplName) {
+            if(tplObj.layoutName == layoutStorage[i].tplName) {
+                
+                // Если этот макет уже включен, то выходим без повторного отображения и запуска методов
+                if(lastLayoutObj && tplObj.layoutName == lastLayoutObj.tplName) {
+                    return;
+                }
                 
                 // Предыдущий активный макет
                 if(lastLayoutObj) {
                   
-                    // Если был определен метод after у предыдущего макета,
-                    // то он вызывается при переключении на новый
-                    if(lastLayoutObj.after) {
-                        lastLayoutObj.after();
+                    // Запускает метод предыдущего макета, перед переключением на новый
+                    if(lastLayoutObj.afterLeaving) {
+                        lastLayoutObj.afterLeaving();
                     }
                     
                     // Скрываем предыдущий макет
                     lastLayoutObj.$tpl.hide();
                 }
                 
-                // Если определен метод при переключении у текущего макета, то запускаем
-                if(layoutStorage[i].on) {
-                    layoutStorage[i].on();
+                // Метод вызывается до отображения макета
+                if(layoutStorage[i].beforeSwitch) {
+                    layoutStorage[i].beforeSwitch();
                 }
                 
                 layoutStorage[i].$tpl.show();
+                
+                // Метод вызывается после отображения макета
+                if(layoutStorage[i].afterSwitch) {
+                    layoutStorage[i].afterSwitch();
+                }
                 
                 // Предыдущий макет меняем на текущий, для следующего переключения
                 lastLayoutObj = layoutStorage[i];
@@ -114,13 +123,13 @@ AppHybrid.components.templateSwitcher = (function() {
         
     };
     
-    // Переключает шаблоны и макеты, так же запускает методы on/after если были определены
-    PUBLIC.switch = function(obj) {
-        PRIVATE.switchTemplate(obj);
-        PRIVATE.switchLayout(obj);
+    // Переключает шаблоны и макеты
+    PUBLIC.switch = function(tplObj) {
+        PRIVATE.switchTemplate(tplObj);
+        PRIVATE.switchLayout(tplObj);
     };
 
-    // Регистрирует методы которые исполняются при переключении шаблона
+    // Регистрирует макеты и шаблоны
     PUBLIC.register = function(obj) {
  
         // Если обычный шаблон, у которого есть свойство родительского макета
