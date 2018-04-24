@@ -23,7 +23,7 @@ AppHybrid.layouts.welcome = (function() {
         
         /* --------------------- Register layout --------------------- */
         
-        PUBLIC.template.on = function() {
+        PUBLIC.template.beforeSwitch = function() {
             PUBLIC.template.$tpl.fadeIn();
         }
         
