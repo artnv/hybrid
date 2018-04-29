@@ -17,11 +17,15 @@ AppHybrid.views.demoAbout = (function() {
 
     PUBLIC.show = function() {
 
+        var
+            navBar;
+        // --
+        
         DI.app.widgets.title.set(
             DI.app.widgets.title.getDefault() +' / '+ 'О приложении'
         );        
         
-        var x = DI.app.widgets.breadcrumb.make([
+        navBar = DI.app.widgets.breadcrumb.make([
             {
                 text    : 'Главная страница',
                 link    : '#/welcome'
@@ -35,8 +39,7 @@ AppHybrid.views.demoAbout = (function() {
             }
         ]);
         
-        PUBLIC.template.$tpl.html(x);
-        
+        PUBLIC.template.$tpl.html(navBar);
         DI.app.components.templateSwitcher.switch(PUBLIC.template);
     };
     

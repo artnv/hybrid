@@ -21,15 +21,18 @@ AppHybrid.layouts.demo = (function() {
             items;
         // --
         
-        items = [{
-                text    : 'Demo index',
+        items = [
+            {
+                text    : 'Index',
                 link    : '#/demo/index',
                 key     : 'demoIndex'
-            },{
-                text    : 'Demo about',
+            },
+            {
+                text    : 'About',
                 link    : '#/demo/about',
                 key     : 'demoAbout'
-            }];
+            }
+        ];
 
         PUBLIC.template.$nav.html(
             DI.app.widgets.nav.make(items, activeKey)
