@@ -23,11 +23,13 @@ AppHybrid.moduleManagers.componentsManager = (function() {
         /* --------------------- Dependency injection --------------------- */
         
         COMPONENTS.templateSwitcher.addDependencies(DI);
+        COMPONENTS.dataStorage.addDependencies(DI);
         
         
         /* --------------------- Initialization modules --------------------- */
         
         COMPONENTS.templateSwitcher.initModule();
+        COMPONENTS.dataStorage.initModule();
 
         
     };
