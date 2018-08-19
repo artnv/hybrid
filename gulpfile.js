@@ -18,8 +18,6 @@ var scripts = [
     './node_modules/underscore/underscore-min.js',
     './node_modules/backbone/backbone-min.js',
     './node_modules/jquery/dist/jquery.min.js',
-    './src/js/pace-config.js',
-    './node_modules/pace-js/pace.min.js',
     './node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
  
     // ------------------------  Файлы приложения ------------------------
@@ -58,7 +56,6 @@ var scripts = [
 
 var css = [
     './node_modules/bootstrap/dist/css/bootstrap.css',
-    './node_modules/pace-js/themes/blue/pace-theme-minimal.css',
     './src/css/**/*.css'
 ];
 
