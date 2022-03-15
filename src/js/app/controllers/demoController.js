@@ -13,8 +13,8 @@ AppHybrid.controllers.demoController = (function() {
 
     
 
-    ACTIONS.index = function() {
-        VIEWS.demoIndex.show();
+    ACTIONS.index = function(obj) {
+        VIEWS.demoIndex.show(obj);
     };
     
     ACTIONS.about = function() {

@@ -15,7 +15,7 @@ AppHybrid.layouts.demo = (function() {
         $nav            : $('#hybrid-layout-demo-nav-1')
     };
     
-    PUBLIC.showNavBar = function(activeKey) {
+    PUBLIC.showNavBar = function(obj) {
 
         var
             items;
@@ -35,7 +35,7 @@ AppHybrid.layouts.demo = (function() {
         ];
 
         PUBLIC.template.$nav.html(
-            DI.app.widgets.nav.make(items, activeKey)
+            DI.app.widgets.nav.make(items, obj.action)
         );
         
     }

@@ -4,7 +4,7 @@ var AppHybrid = (function() {
     var
         PUBLIC = {
             
-            eventManager        : _.clone(Backbone.Events),
+            eventManager        : new EventManager(),
             router              : undefined,
             
             // Namespace

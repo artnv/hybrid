@@ -31,7 +31,7 @@ AppHybrid.views.demoPage404 = (function() {
     PUBLIC.initModule = function() {
 
         $("#go_to_index").click(function() {
-            DI.app.router.redirectTo('#/demo/index');
+            DI.app.router.router.redirectTo('#/welcome');
         });
         
         

@@ -15,11 +15,15 @@ AppHybrid.views.demoIndex = (function() {
         $tpl            : $('#hybrid-tpl-demo-index')
     };
 
-    PUBLIC.show = function() {
+    PUBLIC.show = function(obj) {
 
         DI.app.widgets.title.set(
             DI.app.widgets.title.getDefault() +' / '+ 'Demo'
         );        
+        
+        var box = document.getElementById("hybrid-tpl-demo-index");
+        box.innerHTML = "demoindex<br> " + JSON.stringify(obj);
+        box.innerHTML += '<br><a href="#/demo/index/100/page/500">#/demo/index/100/page/500</a>';
         
         DI.app.components.templateSwitcher.switch(PUBLIC.template);
     };

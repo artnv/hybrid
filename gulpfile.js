@@ -15,15 +15,19 @@ var
 var scripts = [
 
     // ------------------------ Библиотеки ------------------------
-    './node_modules/underscore/underscore-min.js',
-    './node_modules/backbone/backbone-min.js',
     './node_modules/jquery/dist/jquery.min.js',
     './node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
  
     // ------------------------  Файлы приложения ------------------------
     
+    // pubsub
+    './src/js/event-manager.js',    
+    
+    // router
+    './src/js/router.js',
+    
     // App
-    './src/js/app/AppHybrid.js',
+    './src/js/app/app-hybrid.js',
     
     // Configs
     './src/js/app/configs/**/*.js',
@@ -73,7 +77,7 @@ var imgs = [
 
 gulp.task('js', function() {
     return gulp.src(scripts)
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(concat('./bundle.js'))
     .pipe(gulp.dest('./web/js/'));
 });

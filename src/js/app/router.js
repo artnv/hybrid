@@ -11,62 +11,50 @@ AppHybrid.router = (function() {
         DI;
 
     // End var
+
+    PRIVATE.RoutesObj = new Router({
     
-    
-    PRIVATE.RoutesObj = Backbone.Router.extend({
-        
-        initialize : function() {
-            this.on('all', function(trigger, args) {
-                var routeData = trigger.split(":");
-                if(routeData[0] == 'route' && routeData[1]) {
-                    // Генерирует событие с названием колбека из routes, при его срабатывании
-                    EVENT_MANAGER.trigger("Router@Action", routeData[1]);
-                }
-            });
-        },
-        
         routes: {
-            ''                  : 'redirectToIndex',
-            'welcome'           : 'welcomeIndex',
-            'demo/index'        : 'demoIndex',
-            'demo/about'        : 'demoAbout',
-            'doc/index'         : 'docIndex',
-            '404'               : 'demoPageNotFound',
-            '*random'           : 'demoPageNotFound'
+            ''                  : 'welcomeIndex',
+            '#/welcome'         : 'welcomeIndex',
+            '#/demo/index'      : 'demoIndex',
+            '#/demo/index/:id/page/:page'      : 'demoIndex',
+            '#/demo/about'      : 'demoAbout',
+            '*random'           : 'pageNotFound'
         },
         
-        redirectToIndex     : function() {
-            PUBLIC.redirectTo('#/welcome');
+        events: {
+            firstStartAndHashchange : function(obj) {
+                EVENT_MANAGER.trigger("Router@Action", obj);
+            },
         },
-        
+      
+        // Actions
 
         /* === demo === */
 
-        demoIndex   : function () {
-           EVENT_MANAGER.trigger("Router/demo/index");
+        demoIndex   : function (obj) {
+            console.log('demoIndex: obj');
+            console.log(obj);
+           EVENT_MANAGER.trigger("Router/demo/index", obj);
         },   
         
-        demoAbout   : function () {
-           EVENT_MANAGER.trigger("Router/demo/about");
+        demoAbout   : function (obj) {
+            console.log(obj);
+           EVENT_MANAGER.trigger("Router/demo/about", obj);
         },
         
-        demoPageNotFound    : function () {
-           EVENT_MANAGER.trigger("Router/demo/pageNotFound");
+        pageNotFound: function(obj) {
+            EVENT_MANAGER.trigger("Router/demo/pageNotFound", obj);
         },
-        
         
         /* === welcome === */
-
-        welcomeIndex    : function () {
-           EVENT_MANAGER.trigger("Router/welcome/index");
+        welcomeIndex    : function (obj) {
+            console.log(obj);
+           EVENT_MANAGER.trigger("Router/welcome/index", obj);
         },
-
     });
 
-    PUBLIC.redirectTo = function (url) {
-        PUBLIC.router.navigate(url);     
-    };
-    
     PUBLIC.addDependencies = function(obj) {
         DI = obj;
     };
@@ -76,8 +64,8 @@ AppHybrid.router = (function() {
         EVENT_MANAGER = DI.app.eventManager;
         // --
 
-        PUBLIC.router   = new PRIVATE.RoutesObj();
-        Backbone.history.start();
+        PUBLIC.router   =  PRIVATE.RoutesObj;
+        PUBLIC.router.init();
 
     };
 
